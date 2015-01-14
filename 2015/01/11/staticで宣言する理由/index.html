@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Kindle | 2014年末につくったブログ</title>
+  <title>staticで宣言する理由 | 2014年末につくったブログ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Kindle PaperWhiteほしい．iPhoneのKindleアプリで本読み始めてから本買う頻度が高い．iPhone4Sで本読むのは画面サイズ的に辛いんだよなぁ．．．">
+  <meta name="description" content="金曜日にコンピュータプログラミングのTAやってて，メイン関数の中に「大きな配列を宣言するときにはstaticを使うこと」とかコメントで書いてあった．
+C言語というかメモリ周りの話には全く弱くてわからなかったので先生に聞いてみた．staticなしで宣言した変数はスタック領域からメモリを確保する．スタック領域は大きさが決まっているので（コンパイル時に指定することは可能）大きすぎるとスタックオーバーフロ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kindle">
-<meta property="og:url" content="http://ytsunetsune.github.io/2015/01/05/Kindle/">
+<meta property="og:title" content="staticで宣言する理由">
+<meta property="og:url" content="http://ytsunetsune.github.io/2015/01/11/staticで宣言する理由/">
 <meta property="og:site_name" content="2014年末につくったブログ">
-<meta property="og:description" content="Kindle PaperWhiteほしい．iPhoneのKindleアプリで本読み始めてから本買う頻度が高い．iPhone4Sで本読むのは画面サイズ的に辛いんだよなぁ．．．">
+<meta property="og:description" content="金曜日にコンピュータプログラミングのTAやってて，メイン関数の中に「大きな配列を宣言するときにはstaticを使うこと」とかコメントで書いてあった．
+C言語というかメモリ周りの話には全く弱くてわからなかったので先生に聞いてみた．staticなしで宣言した変数はスタック領域からメモリを確保する．スタック領域は大きさが決まっているので（コンパイル時に指定することは可能）大きすぎるとスタックオーバーフロ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kindle">
-<meta name="twitter:description" content="Kindle PaperWhiteほしい．iPhoneのKindleアプリで本読み始めてから本買う頻度が高い．iPhone4Sで本読むのは画面サイズ的に辛いんだよなぁ．．．">
+<meta name="twitter:title" content="staticで宣言する理由">
+<meta name="twitter:description" content="金曜日にコンピュータプログラミングのTAやってて，メイン関数の中に「大きな配列を宣言するときにはstaticを使うこと」とかコメントで書いてあった．
+C言語というかメモリ周りの話には全く弱くてわからなかったので先生に聞いてみた．staticなしで宣言した変数はスタック領域からメモリを確保する．スタック領域は大きさが決まっているので（コンパイル時に指定することは可能）大きすぎるとスタックオーバーフロ">
 
   
     <link rel="alternative" href="/atom.xml" title="2014年末につくったブログ" type="application/atom+xml">
@@ -61,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Kindle" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-staticで宣言する理由" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/05/Kindle/" class="article-date">
-  <time datetime="2015-01-05T10:01:02.000Z" itemprop="datePublished">Jan 5 2015</time>
+    <a href="/2015/01/11/staticで宣言する理由/" class="article-date">
+  <time datetime="2015-01-11T14:46:51.000Z" itemprop="datePublished">Jan 11 2015</time>
 </a>
     
   </div>
@@ -75,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Kindle
+      staticで宣言する理由
     </h1>
   
 
@@ -83,15 +86,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Kindle PaperWhiteほしい．<br>iPhoneのKindleアプリで本読み始めてから本買う頻度が高い．<br>iPhone4Sで本読むのは画面サイズ的に辛いんだよなぁ．．．</p>
+        <p>金曜日にコンピュータプログラミングのTAやってて，<br>メイン関数の中に「大きな配列を宣言するときには<code>static</code>を使うこと」<br>とかコメントで書いてあった．</p>
+<p>C言語というかメモリ周りの話には全く弱くてわからなかったので先生に聞いてみた．<br><code>static</code>なしで宣言した変数はスタック領域からメモリを確保する．<br>スタック領域は大きさが決まっているので（コンパイル時に指定することは可能）<br>大きすぎるとスタックオーバーフローするから，という話だった．<br><code>static</code>をつけるとヒープ（スタック以外の領域）からメモリを確保するのでその問題はないと．<br>ほかグローバル変数のようなずっと残る変数や，<code>malloc</code>で確保した場合にもヒープから確保される．</p>
+<p>たとえば，こんなコードを書くとスタックオーバーフローでセグフォして落ちる．</p>
+<figure class="highlight C"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">    <span class="keyword">char</span> a[<span class="number">8192</span> * <span class="number">1024</span>];</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"hoge\n"</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>スタックのサイズはシェルで<code>ulimit -s</code>ってやるとわかる．</p>
+<p>勉強になった．</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ytsunetsune.github.io/2015/01/05/Kindle/" data-id="zts9twvwsjx01691" class="article-share-link">Share</a>
+      <a data-url="http://ytsunetsune.github.io/2015/01/11/staticで宣言する理由/" data-id="w31j8y90n488t1pn" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/物欲/">物欲</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/プログラミング/">プログラミング</a></li></ul>
 
     </footer>
   </div>
@@ -99,15 +108,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/01/06/Linuxのための並行プログラミング入門/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/01/12/すべてがFになる/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Linuxのための並行プログラミング入門
+          すべてがFになる
         
       </div>
     </a>
   
+  
+    <a href="/2015/01/11/散髪/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">散髪</div>
+    </a>
   
 </nav>
 
